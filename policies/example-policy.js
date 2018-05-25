@@ -10,7 +10,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 const BasicStrategy = require('../../node_modules/passport-http').BasicStrategy;
 
 module.exports = {
-    name: 'example',
+    name: 'authentication-plugin',
     policy: (actionParams) => {
 
         passport.use(new BasicStrategy(

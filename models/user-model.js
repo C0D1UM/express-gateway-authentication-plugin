@@ -1,5 +1,5 @@
 const keys = require('../keys');
-const Sequelize = require('sequelize');
+const Sequelize = require('../../node_modules/sequelize');
 const sequelize = new Sequelize(keys.db.postgresqlUrl);
 const User = sequelize.define('user', {
     username: {

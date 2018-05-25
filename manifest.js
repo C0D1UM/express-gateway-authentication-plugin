@@ -69,5 +69,5 @@ module.exports = {
             console.log('admin ready');
         });
     },
-    policies: ['example'] // this is for CLI to automatically add to "policies" whitelist in gateway.config
+    policies: ['authentication-plugin'] // this is for CLI to automatically add to "policies" whitelist in gateway.config
 };
