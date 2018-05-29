@@ -59,11 +59,13 @@ module.exports = {
 
         passport.use(new JWTStrategy({
                 jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-                secretOrKey: keys.jwt.secretKey
+                secretOrKey: keys.jwt.secretKey,
+                passReqToCallback: true
             },
-            function (jwtPayload, cb) {
+            function (req, jwtPayload, cb) {
                 return User.findOne({username: jwtPayload.username}).then(user => {
                     if (user) {
+                        req.headers['USERINFO'] = JSON.stringify(user);
                         return cb(null, user);
                     }
                     return cb(null, false);
@@ -74,10 +76,7 @@ module.exports = {
         ));
 
         return (req, res, next) => {
-            passport.authenticate('jwt', {session: false}, (err, user) => {
-                req.headers['USERINFO'] = JSON.stringify(user);
-                next();
-            })(req, res, next);
+            passport.authenticate('jwt', {session: false})(req, res, next);
 
             //res.json({ hello: 'ok', url: req.url, actionParams });
             //next() // calling next policy

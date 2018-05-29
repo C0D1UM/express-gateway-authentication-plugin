@@ -6,7 +6,7 @@ module.exports = {
         callbackURL: 'http://localhost:8080/auth/google/callback'
     },
     db: {
-        postgresqlUrl: 'postgres://postgres:postgres@localhost:5432/userdatabase'
+        postgresqlUrl: process.env.DATABASE_URL
     },
     jwt: {
         secretKey: 'xxx'
